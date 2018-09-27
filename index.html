@@ -18,8 +18,8 @@
 	<div ng-controller="MainController as ctrl" style="margin: 20px;">
 		<div ng-repeat="item in ctrl.grid" style="clear: both;">
 			<div class="cell" ng-repeat="item in item" style="float: left;" 
-			ng-style="{'background-color': item.isActive ? 'black' : 'white'}">
-				{{item.x}}, {{item.y}}
+			ng-style="{'background-color': item.isActive ? 'black' : (item.isPoint ? 'blue' : 'white')}">
+				<!-- {{::item.x}}, {{::item.y}} -->
 			</div>
 			<br>
 		</div>

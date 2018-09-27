@@ -3,11 +3,23 @@ angular.module('appModule', [])
         var ctrl = this;
         var chessBorad = [];
         var grid = [];
+        var pointCell;
 
         function cell(i, j) {
             this.x = i;
             this.y = j;
             this.isActive = 0;
+            this.isPoint = 0;
+        }
+
+        function setNewPointCell(){
+            pointCell.isPoint = 0;
+            var xForPoint = Math.floor(Math.random() * 9);
+            var yForPoint = Math.floor(Math.random() * 9);
+            pointCell = grid[xForPoint][yForPoint];
+            pointCell.isPoint = 1;
+
+            return pointCell;
         }
 
         ctrl.listOfActiveCell = [];
@@ -35,6 +47,9 @@ angular.module('appModule', [])
             });
         });
 
+        pointCell = grid[9][9];
+        pointCell.isPoint = 1;
+
         $interval(function() {
             var lastCell = ctrl.listOfActiveCell[2];
 
@@ -58,6 +73,9 @@ angular.module('appModule', [])
 
             var firstCell = ctrl.listOfActiveCell.splice(0, 1);
             firstCell[0].isActive = 0;
+
+            setNewPointCell();
+
         }, 100);
 
     }])
